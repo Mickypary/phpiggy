@@ -1,0 +1,23 @@
+{
+    "name": "mickypary/phpiggy",
+    "description": "A PHP Application for tracking expenses",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Mickypary",
+            "email": "mikipary@gmail.com",
+            "homepage": "https://www.mrichtec.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@mrichtec.com"
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "src/Framework",
+            "App\\": "src/App"
+        }
+    }
+}

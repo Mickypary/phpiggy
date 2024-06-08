@@ -1,19 +1,20 @@
 <?php
 
-$driver = "mysql";
-$host = "localhost";
-$dbname = "phpiggy";
-$config = http_build_query(data: [
+include __DIR__ .  "/src/Framework/Database.php";
+
+use Framework\Database;
+
+$db = new Database('mysql', [
     'host' => 'localhost',
     'port' => 3306,
     'dbname' => 'phpiggy',
-], arg_separator: ';');
+], 'root', '');
 
-// $dsn = "{$driver}:{$config}";
-$dsn = "{$driver}:{$host};{$dbname}";
-$username = 'root';
-$password = '';
+$search = "Hats' OR 1=1 -- ";
+$query = "SELECT * FROM products WHERE name='{$search}'";
 
-$db = new PDO($dsn, $username, $password);
+echo $query;
 
-var_dump($db);
+$stmt = $db->connection->query($query, PDO::FETCH_ASSOC);
+
+var_dump($stmt->fetchAll(PDO::FETCH_OBJ));

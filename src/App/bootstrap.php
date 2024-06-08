@@ -5,15 +5,18 @@ declare(strict_types=1);
 require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App;
-use App\Controllers\HomeController;
+use App\Config\Paths;
 
-// echo HomeController::class;
+// autoloading function 
+use function App\Config\{registerRoutes, registerMiddleware};
 
-$app = new App();
+// echo AboutController::class;
 
-$app->get('/',[HomeController::class, 'home']);
+$app = new App(Paths::SOURCE . "App/container-definitions.php");
+
+registerRoutes($app);
+registerMiddleware($app);
 
 // dd($app);
 
 return $app;
-

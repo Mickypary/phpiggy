@@ -1,5 +1,6 @@
 <?php
 // print_r($_SERVER);
+// phpinfo();
 
 include __DIR__ . '/../src/App/functions.php';
 

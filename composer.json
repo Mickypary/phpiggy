@@ -23,6 +23,9 @@
             "src/App/Config/Routes.php",
             "src/App/Config/Middleware.php"
         ]
+    },
+    "scripts": {
+        "phpiggy": "php cli.php"
     }
     
 }

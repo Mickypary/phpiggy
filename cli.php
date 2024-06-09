@@ -1,20 +1,25 @@
 <?php
 
+$check = require __DIR__ . "/vendor/autoload.php";
+
+use App\Config\Paths;
+
+// FOR DOTENV FILE CONFIG
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(Paths::ROOT);
+$dotenv->load();
+
 include __DIR__ .  "/src/Framework/Database.php";
 
 use Framework\Database;
 
-$db = new Database('mysql', [
-    'host' => 'localhost',
-    'port' => 3306,
-    'dbname' => 'phpiggy',
-], 'root', '');
+$db = new Database($_ENV['DB_DRIVER'], [
+    'host' => $_ENV['DB_HOST'],
+    'port' => $_ENV['DB_PORT'],
+    'dbname' => $_ENV['DB_NAME'],
+], $_ENV['DB_USER'], $_ENV['DB_PASS']);
 
-$search = "Hats' OR 1=1 -- ";
-$query = "SELECT * FROM products WHERE name='{$search}'";
+$sqlFile = file_get_contents("./database.sql");
 
-echo $query;
-
-$stmt = $db->connection->query($query, PDO::FETCH_ASSOC);
-
-var_dump($stmt->fetchAll(PDO::FETCH_OBJ));
+$db->query($sqlFile);

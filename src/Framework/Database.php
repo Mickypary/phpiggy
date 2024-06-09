@@ -8,7 +8,7 @@ use PDO, PDOException;
 
 class Database
 {
-    public PDO $connection;
+    private PDO $connection;
     public function __construct(string $driver, array $config, string $username, string $password)
     {
         // $host = "localhost";
@@ -23,5 +23,10 @@ class Database
         } catch (\PDOException $e) {
             die("Could not connect to the database {$e->getMessage()}");
         }
+    }
+
+    public function query(string $query)
+    {
+        $this->connection->query($query);
     }
 }

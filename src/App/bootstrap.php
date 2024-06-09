@@ -6,9 +6,13 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App;
 use App\Config\Paths;
+use Dotenv\Dotenv;
 
 // autoloading function 
 use function App\Config\{registerRoutes, registerMiddleware};
+
+$dotenv = Dotenv::createImmutable(Paths::ROOT);
+$dotenv->load();
 
 // echo AboutController::class;
 

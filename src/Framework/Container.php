@@ -74,7 +74,7 @@ class Container
 
         $factory = $this->definitions[$id];
         // dd($this->definitions["Framework\TemplateEngine"]());
-        $dependency = $factory();
+        $dependency = $factory($this);
 
         $this->resolved[$id] = $dependency;
 
